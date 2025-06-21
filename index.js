@@ -11,7 +11,19 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: [
+    'https://shopper-clothing-admin.vercel.app',
+    'https://shopper-clothing.vercel.app'
+  ],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI, {
